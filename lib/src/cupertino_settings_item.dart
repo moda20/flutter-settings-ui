@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'colors.dart';
+import 'colors.dart';
 
 enum SettingsItemType {
   toggle,
@@ -44,6 +45,7 @@ class CupertinoSettingsItem extends StatefulWidget {
 
 class CupertinoSettingsItemState extends State<CupertinoSettingsItem> {
   bool pressed = false;
+  SettingUIColors SettingColors = new SettingUIColors();
 
   @override
   Widget build(BuildContext context) {
@@ -161,7 +163,7 @@ class CupertinoSettingsItemState extends State<CupertinoSettingsItem> {
               ),
               child: Icon(
                 CupertinoIcons.forward,
-                color: mediumGrayColor,
+                color: SettingColors.mediumGrayColor,
                 size: 21.0,
               ),
             ),
@@ -215,15 +217,15 @@ class CupertinoSettingsItemState extends State<CupertinoSettingsItem> {
   Color calculateBackgroundColor(BuildContext context) {
     if (Theme.of(context).brightness == Brightness.light) {
       if (pressed) {
-        return iosPressedTileColorLight;
+        return SettingColors.iosPressedTileColorLight;
       } else {
         return Colors.white;
       }
     } else {
       if (pressed) {
-        return iosPressedTileColorDark;
+        return SettingColors.iosPressedTileColorDark;
       } else {
-        return iosTileDarkColor;
+        return SettingColors.iosTileDarkColor;
       }
     }
   }

@@ -4,17 +4,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:settings_ui/src/cupertino_settings_section.dart';
 import 'package:settings_ui/src/settings_tile.dart';
+import 'colors.dart';
+import 'colors.dart';
 
 // ignore: must_be_immutable
 class SettingsSection extends StatelessWidget {
+  SettingUIColors SettingColors = new SettingUIColors();
   final String title;
   final List<SettingsTile> tiles;
+  ///[headhingTextcolor] will ovverrride the global theme from the settings list
+  final Color headhingTextcolor;
   bool showBottomDivider = false;
 
   SettingsSection({
     Key key,
     this.tiles,
     this.title,
+    this.headhingTextcolor
   }) : super(key: key);
 
   @override
@@ -41,7 +47,7 @@ class SettingsSection extends StatelessWidget {
               child: Text(
                 title,
                 style: TextStyle(
-                    color: Theme.of(context).accentColor,
+                    color: headhingTextcolor!=null?headhingTextcolor:SettingColors.sectionHeadingTextcolor,
                     fontWeight: FontWeight.bold),
               ),
             ),

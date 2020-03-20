@@ -16,6 +16,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Scaffold(
       appBar: AppBar(title: Text('Settings UI')),
       body: SettingsList(
+        backgroundColor: Colors.blue,
+        headingTextColor: Colors.deepPurple,
+        textColor: Colors.amber,
         sections: [
           SettingsSection(
             title: 'Common',

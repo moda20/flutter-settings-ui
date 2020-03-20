@@ -5,7 +5,10 @@ import 'package:settings_ui/settings_ui.dart';
 import 'colors.dart';
 
 class CupertinoSettingsSection extends StatelessWidget {
-  const CupertinoSettingsSection(
+
+  SettingUIColors SettingColors = new SettingUIColors();
+
+  CupertinoSettingsSection(
     this.items, {
     this.header,
     this.footer,
@@ -57,14 +60,14 @@ class CupertinoSettingsSection extends StatelessWidget {
         decoration: BoxDecoration(
           color: Theme.of(context).brightness == Brightness.light
               ? CupertinoColors.white
-              : iosTileDarkColor,
+              : SettingColors.iosTileDarkColor,
           border: Border(
-            top: const BorderSide(
-              color: borderColor,
+            top:  BorderSide(
+              color: SettingColors.borderColor,
               width: 0.3,
             ),
-            bottom: const BorderSide(
-              color: borderColor,
+            bottom: BorderSide(
+              color: SettingColors.borderColor,
               width: 0.3,
             ),
           ),
@@ -79,7 +82,7 @@ class CupertinoSettingsSection extends StatelessWidget {
     if (footer != null) {
       columnChildren.add(DefaultTextStyle(
         style: TextStyle(
-          color: groupSubtitle,
+          color: SettingColors.groupSubtitle,
           fontSize: 13.0,
           letterSpacing: -0.08,
         ),

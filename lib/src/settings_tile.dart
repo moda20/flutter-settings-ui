@@ -4,9 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:settings_ui/src/cupertino_settings_item.dart';
 
+import 'colors.dart';
+
 enum _SettingsTileType { simple, switchTile }
 
 class SettingsTile extends StatelessWidget {
+  SettingUIColors SettingColors = new  SettingUIColors();
+
   final String title;
   final String subtitle;
   final Widget leading;
@@ -16,7 +20,7 @@ class SettingsTile extends StatelessWidget {
   final bool switchValue;
   final _SettingsTileType _tileType;
 
-  const SettingsTile({
+  SettingsTile({
     Key key,
     @required this.title,
     this.subtitle,
@@ -28,7 +32,7 @@ class SettingsTile extends StatelessWidget {
         switchValue = null,
         super(key: key);
 
-  const SettingsTile.switchTile({
+  SettingsTile.switchTile({
     Key key,
     @required this.title,
     this.subtitle,
@@ -77,13 +81,33 @@ class SettingsTile extends StatelessWidget {
         secondary: leading,
         value: switchValue,
         onChanged: onToggle,
-        title: Text(title),
-        subtitle: subtitle != null ? Text(subtitle) : null,
+        title: Text(
+            title,
+            style: TextStyle(
+                color: SettingColors.tileTitleColor
+            )
+        ),
+        subtitle: subtitle != null ? Text(
+            subtitle,
+          style: TextStyle(
+              color: SettingColors.groupSubtitle
+          ),
+        ) : null,
       );
     } else {
       return ListTile(
-        title: Text(title),
-        subtitle: subtitle != null ? Text(subtitle) : null,
+        title: Text(
+            title,
+          style: TextStyle(
+            color: SettingColors.tileTitleColor
+          ),
+        ),
+        subtitle: subtitle != null ? Text(
+            subtitle,
+          style: TextStyle(
+              color: SettingColors.groupSubtitle
+          ),
+        ) : null,
         leading: leading,
         trailing: trailing,
         onTap: onTap,
