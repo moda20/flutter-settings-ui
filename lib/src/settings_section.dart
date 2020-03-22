@@ -11,6 +11,7 @@ import 'colors.dart';
 class SettingsSection extends StatelessWidget {
   SettingUIColors SettingColors = new SettingUIColors();
   final String title;
+  final TextStyle titleTextStyle;
   final List<SettingsTile> tiles;
   ///[headhingTextcolor] will ovverrride the global theme from the settings list
   final Color headhingTextcolor;
@@ -20,7 +21,8 @@ class SettingsSection extends StatelessWidget {
     Key key,
     this.tiles,
     this.title,
-    this.headhingTextcolor
+    this.headhingTextcolor,
+    this.titleTextStyle
   }) : super(key: key);
 
   @override
@@ -46,9 +48,9 @@ class SettingsSection extends StatelessWidget {
               padding: const EdgeInsets.all(16),
               child: Text(
                 title,
-                style: TextStyle(
+                style: titleTextStyle==null?TextStyle(
                     color: headhingTextcolor!=null?headhingTextcolor:SettingColors.sectionHeadingTextcolor,
-                    fontWeight: FontWeight.bold),
+                    fontWeight: FontWeight.bold):titleTextStyle,
               ),
             ),
       ListView.separated(

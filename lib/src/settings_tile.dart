@@ -8,11 +8,18 @@ import 'colors.dart';
 
 enum _SettingsTileType { simple, switchTile }
 
+
+///Used as an abstract for the  Setting Tile for both android and iOS
+///[titleTextStyle] will override the default color inherited from the sectionList color attribute for the title
+///[subtitleTextStyle] will override the default color inherited from the sectionList color attribute for the subtitle
+/// Those textStyles only apply to android for the moment
 class SettingsTile extends StatelessWidget {
   SettingUIColors SettingColors = new  SettingUIColors();
 
   final String title;
+  final TextStyle titleTextStyle;
   final String subtitle;
+  final TextStyle subtitleTextStyle;
   final Widget leading;
   final Widget trailing;
   final VoidCallback onTap;
@@ -27,6 +34,8 @@ class SettingsTile extends StatelessWidget {
     this.leading,
     this.trailing,
     this.onTap,
+    this.titleTextStyle,
+    this.subtitleTextStyle
   })  : _tileType = _SettingsTileType.simple,
         onToggle = null,
         switchValue = null,
@@ -38,6 +47,8 @@ class SettingsTile extends StatelessWidget {
     this.subtitle,
     this.leading,
     this.trailing,
+    this.titleTextStyle,
+    this.subtitleTextStyle,
     @required this.onToggle,
     @required this.switchValue,
   })  : _tileType = _SettingsTileType.switchTile,
@@ -83,30 +94,30 @@ class SettingsTile extends StatelessWidget {
         onChanged: onToggle,
         title: Text(
             title,
-            style: TextStyle(
+            style: titleTextStyle==null?TextStyle(
                 color: SettingColors.tileTitleColor
-            )
+            ):titleTextStyle
         ),
         subtitle: subtitle != null ? Text(
             subtitle,
-          style: TextStyle(
+          style: subtitleTextStyle==null?TextStyle(
               color: SettingColors.groupSubtitle
-          ),
+          ):subtitleTextStyle,
         ) : null,
       );
     } else {
       return ListTile(
         title: Text(
             title,
-          style: TextStyle(
-            color: SettingColors.tileTitleColor
-          ),
+          style: titleTextStyle==null?TextStyle(
+              color: SettingColors.tileTitleColor
+          ):titleTextStyle
         ),
         subtitle: subtitle != null ? Text(
             subtitle,
-          style: TextStyle(
+          style: subtitleTextStyle==null?TextStyle(
               color: SettingColors.groupSubtitle
-          ),
+          ):subtitleTextStyle,
         ) : null,
         leading: leading,
         trailing: trailing,
